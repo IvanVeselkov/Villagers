@@ -1,0 +1,12 @@
+﻿Коротко: Не будет рассинхрона.
+
+- Cinemachine и камера полностью локальные для каждого клиента. У каждого игрока своя CinemachineVirtualCamera.
+- Если vcam не имеет NetworkIdentity и включается только у isLocalPlayer (как в MP_ThirdPersonCameraSetup) - ничего между клиентами не синхронизируется.
+- Mirror вообще не трогает Camera/VCam, поэтому конфликта нет.
+
+Рекомендации:
+- Не добавляй NetworkIdentity на CinemachineVirtualCamera
+- Активируй камеру только для локального игрока
+- Если используешь CinemachineBrain - он обычно один на сцене (MainCamera), его синхронизировать не нужно
+
+В текущих скриптах уже учтено: if (!isLocalPlayer) vcam.gameObject.SetActive(false); - всё корректно.

@@ -1,0 +1,23 @@
+# Лог работ
+- [init] Исследовал проект, нашёл скрипты, префабы, модели, InputSystem.
+- [add] Создал Scripts/Player: PlayerController.cs, PlayerAnimationController.cs, CameraSwitcher.cs, PlayerCamera.cs.
+- [deps] Добавил com.unity.cinemachine 3.1.4 в Packages/manifest.json.
+- [meta] Созданы .meta файлы (автоген Unity) для скриптов Player/
+- [todo] Нужно настроить Player.prefab: добавить CharacterController, PlayerController, PlayerCamera, CameraSwitcher
+- [todo] Найти/добавить аниматор к модели игрока (TT_RTS_Characters_customizable) и настроить параметры
+- [todo] Добавить Cinemachine камеры к сцене/префабу
+- [todo] Настроить BlendTree для ходьбы/бега
+- [rule] Обновлены правила: ведение лога в !Log.txt, возможность отката по записям
+- [project] Обновил !Project.txt - расширенное описание проекта
+- [info] Сообщил о правках - описание проекта расширено и зафиксировано
+- [rule] Добавлены правила: запрет редактирования пользовательских скриптов + идеи в <Script>Ideas.txt; обязательный запрос разрешения на создание файлов/пакетов; правила редактируемы пользователем
+- [confirm] Правила 11-13 приняты и зафиксированы
+- [req] Пользователь запросил MP контроллер + камеру 3rd person + работа с Mirror
+- [deps] Добавил Mirror через git URL в Packages/manifest.json
+- [add] Создал MP_PlayerMovement.cs (Mirror NetworkBehaviour, движение от камеры 3rd-like, isLocalPlayer)
+- [add] Создал MP_ThirdPersonCameraSetup.cs (Cinemachine авто-настройка для локального игрока)
+- [doc] Создал MirrorGuide.txt - инструкция по настройке Mirror
+- [done] MP скрипты созданы, Mirror добавлен в manifest, инструкция MirrorGuide.txt готова
+- [qna] Обсуждение: Cinemachine + Mirror - локальный, без рассинхрона
+- [answer] Ответ по Cinemachine+Mirror сохранён в Mirror_Cinemachine_Answer.txt
+- [fix] Перезаписал Mirror_Cinemachine_Answer.txt в корректной кодировке UTF-8
