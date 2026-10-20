@@ -3,7 +3,7 @@ using Mirror;
 
 public class NetMovement : NetworkBehaviour
 {
-
+  public NetPlayerInformation NetPlayerInfo;
   public float rotSpeed = 0.0f;
   [SerializeField] private Transform target;
   public float moveSpeed = 9.0f;
@@ -13,6 +13,12 @@ public class NetMovement : NetworkBehaviour
   public float minFall = -1.5f;
   private float _vertSpeed;
   private CharacterController _charController;
+
+  private bool isStop;
+  public void SetMoveStop(bool moveStop)
+  {
+    isStop = moveStop;
+  }
   void Start()
   {
     _charController = GetComponent<CharacterController>();

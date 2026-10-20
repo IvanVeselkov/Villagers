@@ -7,7 +7,7 @@ public struct PosMessage : NetworkMessage //наследуемся от инте
 }
 public class NetMan : NetworkManager
 {
-  private bool playerSpawned;
+
   public void OnCreateCharacter(NetworkConnectionToClient conn, PosMessage message)
   {
     GameObject go = Instantiate(playerPrefab, message.vector2, Quaternion.identity); //локально на сервере создаем gameObject
@@ -20,19 +20,20 @@ public class NetMan : NetworkManager
     NetworkServer.RegisterHandler<PosMessage>(OnCreateCharacter); //указываем, какой struct должен прийти на сервер, чтобы выполнился свапн
   }
 
-  public void ActivatePlayerSpawn()
-  {
-    Vector3 pos = Input.mousePosition;
-    pos.z = 10f;
-    pos = Camera.main.ScreenToWorldPoint(pos);
 
-    PosMessage m = new PosMessage() { vector2 = pos }; //создаем struct определенного типа, чтобы сервер понял к чему эти данные относятся
-    NetworkClient.Send(m); //отправка сообщения на сервер с координатами спавна
-    playerSpawned = true;
-  }
+  //private bool playerSpawned;
+  //public void ActivatePlayerSpawn()
+  //{
+  //  Vector3 pos = Input.mousePosition;
+  //  pos.z = 10f;
+  //  pos = Camera.main.ScreenToWorldPoint(pos);
+
+  //  PosMessage m = new PosMessage() { vector2 = pos }; //создаем struct определенного типа, чтобы сервер понял к чему эти данные относятся
+  //  NetworkClient.Send(m); //отправка сообщения на сервер с координатами спавна
+  //  playerSpawned = true;
+  //}
 
   bool playerConnected;
-
   public override void OnClientConnect()
   {
     base.OnClientConnect();
@@ -41,9 +42,9 @@ public class NetMan : NetworkManager
 
   private void Update()
   {
-    if (Input.GetKeyDown(KeyCode.Mouse0) && !playerSpawned && playerConnected)
-    {
-      ActivatePlayerSpawn();
-    }
+    //if (Input.GetKeyDown(KeyCode.Mouse0) && !playerSpawned && playerConnected)
+    //{
+    //  ActivatePlayerSpawn();
+    //}
   }
 }

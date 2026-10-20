@@ -17,7 +17,10 @@ public class SecondWeaponShoot : MonoBehaviour
   public Transform Barrel;
   private float Power = 0f;
   private float _rotationX = 0;
-
+  void Awake()
+  {
+    Cursor.lockState = CursorLockMode.Locked;
+  }
   // Start is called once before the first execution of Update after the MonoBehaviour is 
   // Update is called once per frame
   void Update()
