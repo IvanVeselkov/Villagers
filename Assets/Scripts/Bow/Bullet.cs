@@ -11,7 +11,12 @@ public class Bullet : MonoBehaviour
   {
     if (collision.gameObject.tag == "Enemy")
     {
-      //Нанеси урон
+      Damageable d;
+      if(d=collision.gameObject.GetComponent<Damageable>())
+      {
+        d.DealDamage(Damage);
+      }
+      Destroy(this.gameObject);
     }
   }
 }

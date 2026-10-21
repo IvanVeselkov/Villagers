@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c9cac8e426a5f47b121db25da7c739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  Damage: 0
+  Damage: 100
 --- !u!1 &9117363245427080602
 GameObject:
   m_ObjectHideFlags: 0

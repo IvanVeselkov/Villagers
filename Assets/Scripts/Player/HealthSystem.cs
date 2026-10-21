@@ -1,12 +1,15 @@
 using Mirror;
 using TMPro;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class HealthSystem : NetworkBehaviour
 {
   public NetPlayerInformation NetPlayerInfo;
   public float Health = 100f;
   public TMP_Text healthText;
+
+  public List<HitBox> HitBoxs = new List<HitBox>();
 
   [SyncVar(hook = nameof(SyncHealth))] //задаем метод, который будет выполняться при синхронизации переменной
   float _SyncHealth;
@@ -49,5 +52,21 @@ public class HealthSystem : NetworkBehaviour
       healthText.text = Health.ToString();
     }
     
+
+  }
+
+  private void FixedUpdate()
+  {
+    if (isOwned)
+    {
+      for (int i = 0; i < HitBoxs.Count; i++)
+      {
+        if(HitBoxs[i].TakenDamege!=0)
+        {
+          TakeDamage(HitBoxs[i].TakenDamege);
+          HitBoxs[i].TakenDamege = 0;
+        }
+      }
+    }
   }
 }

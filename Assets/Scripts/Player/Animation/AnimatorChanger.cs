@@ -8,6 +8,7 @@ public class AnimatorChanger : NetworkBehaviour
   public NetPlayerInformation NetPlayerInfo;
 
   public bool Attack;
+  public float AttackDuration;
   public bool Dead;
   private bool isDead;
   // Start is called before the first frame update
@@ -24,7 +25,7 @@ public class AnimatorChanger : NetworkBehaviour
   IEnumerator IAttack()
   {
     animatorController.SetTrigger("Damage");
-    yield return new WaitForSeconds(animatorController.GetAnimatorTransitionInfo(0).duration);
+    yield return new WaitForSeconds(0.5f);
   }
   // Update is called once per frame
   void Update()
