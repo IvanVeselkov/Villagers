@@ -3973,7 +3973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa16b233f07ba14a8146d0478218337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damageable: {fileID: 8217256015376432096}
+  Damageable: {fileID: 0}
   Slider: {fileID: 8557477013617196553}
 --- !u!1 &2965635380609299824
 GameObject:
@@ -4222,7 +4222,7 @@ MonoBehaviour:
   AnimatorChanger: {fileID: 3364030225177677504}
   NetMovement: {fileID: 6904348571462358279}
   HealthSystem: {fileID: 6114306205224849556}
-  AttackManager: {fileID: 8778052433022119617}
+  AttackManager: {fileID: 0}
 --- !u!114 &2686445994590579484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4235,12 +4235,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986089033f7d9ac4ba0bf6ec433060d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterCustomization
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   Heads:
   - {fileID: 3747503347039031472}
   - {fileID: 3747503347039029782}
   - {fileID: 3747503347039018148}
   - {fileID: 3747503347039029276}
   - {fileID: 3747503347039022942}
+  headIndex: -1
 --- !u!1 &3445029894193838111
 GameObject:
   m_ObjectHideFlags: 0
@@ -27271,10 +27275,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2960186776351389688}
   - component: {fileID: 2684808104192371808}
-  - component: {fileID: 8217256015376432096}
   - component: {fileID: 6904348571462358279}
   - component: {fileID: 6114306205224849556}
-  - component: {fileID: 8778052433022119617}
+  - component: {fileID: 2041633517109404264}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -27326,38 +27329,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.75, z: 0}
---- !u!114 &8217256015376432096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7817331448634997449}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73872ff8b7427cf4fa26bd9b466bb277, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 100
-  SpawnOnDeath: {fileID: 0}
-  ActivateGameObjectsOnDeath: []
-  DeactivateGameObjectsOnDeath: []
-  DeactivateCollidersOnDeath: []
-  DestroyOnDeath: 1
-  DropOnDeath: 1
-  DestroyDelay: 0
-  Respawn: 0
-  RespawnTime: 10
-  RemoveBulletHolesOnDeath: 1
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  onDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
-  onRespawn:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &6904348571462358279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27399,8 +27370,9 @@ MonoBehaviour:
   NetPlayerInfo: {fileID: 0}
   Health: 100
   healthText: {fileID: 3114509143231045251}
-  HitBoxs: []
---- !u!114 &8778052433022119617
+  HitBoxs:
+  - {fileID: 914267629949395119}
+--- !u!114 &2041633517109404264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -27409,14 +27381,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7817331448634997449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79686412dcb5dce41916e2f8dde7c31a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2066c923ed224dd42aa9b739e92dd6b8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackManager
+  m_EditorClassIdentifier: Assembly-CSharp::CombatBase
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  NetPlayerInfo: {fileID: 2306434126223554984}
-  AttackCollider: {fileID: 1700580564953582586}
+  currentAttack: {fileID: 11400000, guid: 1fe2629a2dca9be4194e3cda55082071, type: 2}
+  attackOrigin: {fileID: 954680218486005972}
+  serverCooldown: 0.1
 --- !u!1 &7843715298410271870
 GameObject:
   m_ObjectHideFlags: 0

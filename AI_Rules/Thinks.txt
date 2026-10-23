@@ -1,0 +1,12 @@
+# Мысли
+- Cinemachine: есть ли в проекте? Если нет - добавим зависимость.
+- Модель TT_RTS_Characters_customizable: проверить наличие анимаций. Если clipAnimations пуст - нужно настроить или использовать готовые клипы из ассетов.
+- PlayerController: использовать CharacterController + InputSystem.
+- Камера: Cinemachine VirtualCamera 1st/3rd + переключение приоритетов.
+- Анимации: BlendTree по скорости или простые параметры Speed/IsMoving/IsRunning.
+[focus] Работа с проектом ведётся по правилам (!Rule.txt). Все изменения логируются в !Log.txt. Описание проекта в !Project.txt актуализировано.
+[approach] При новых задачах - сначала согласовывать изменения в описании проекта, потом реализовывать.
+[rule-update] В !Rule.txt добавлены новые пункты 11-13. Скрипты пользователя только для чтения; идеи фиксируем отдельно.
+[mp-plan] Нужно добавить Mirror (git url), создать MP_PlayerMovement, MP_ThirdPersonCameraSetup. Также дать инструкцию по Mirror настройке.
+[mirror] Mirror git: https://github.com/MirrorNetworking/Mirror.git?path=/Assets/Mirror
+[cinemachine+mirror] Cinemachine - локальный компонент камеры. У каждого клиента своя камера. Поэтому рассинхрона нет. Главное - не синхронизировать Camera/VCam через NetworkIdentity. В скрипте CameraSetup мы деактивируем vcam у не-локальных игроков. Так корректно.

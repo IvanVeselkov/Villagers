@@ -10,3 +10,7 @@
 [mp-plan] Нужно добавить Mirror (git url), создать MP_PlayerMovement, MP_ThirdPersonCameraSetup. Также дать инструкцию по Mirror настройке.
 [mirror] Mirror git: https://github.com/MirrorNetworking/Mirror.git?path=/Assets/Mirror
 [cinemachine+mirror] Cinemachine - локальный компонент камеры. У каждого клиента своя камера. Поэтому рассинхрона нет. Главное - не синхронизировать Camera/VCam через NetworkIdentity. В скрипте CameraSetup мы деактивируем vcam у не-локальных игроков. Так корректно.
+[combat-plan] V2: CmdAttack -> серверный OverlapSphere/raycast -> найти HealthSystem/HitBox -> [Server] нанести урон. Универсальный под игроков и NPC. Под будущее: лук (raycast дальний), посохи (AOE/проекты). HitBox можно оставить как маркер, либо упростить.
+[setup] Нужно: создать AttackData SO, добавить CombatBase к игроку/NPC, настроить LayerMask, заменить вызов атаки на CombatBase.RequestAttack(), убедиться NetworkIdentity есть.
+[question] Tags vs Layers for combat: Layers for Physics.OverlapSphere/Raycast filtering. Tags для поиска объектов/условий. Для hitLayers в AttackData лучше использовать Layers. Tags можно оставить для старых вещей.
+[fix] В CombatBase используется currentAttack.hitLayers - это правильно. Слои выбираются в AttackData через LayerMask. В инспекторе Unity нужно назначить слои в Project Settings и выбрать их в AttackData.hitLayers.

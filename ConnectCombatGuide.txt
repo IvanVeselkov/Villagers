@@ -1,0 +1,52 @@
+﻿КАК ПОДКЛЮЧИТЬ БОЕВУЮ СИСТЕМУ (ШАГ ЗА ШАГОМ)
+
+1. СОЗДАТЬ AttackData
+   Assets > Create > Combat > AttackData
+   Настроить: damage, range, radius, cooldown, hitLayers (выбрать нужные слои)
+
+2. НАСТРОИТЬ СЛОИ
+   Edit > Project Settings > Tags and Layers
+   Рекомендуется: Player, Enemy/NPC, Hitbox
+
+3. НА ИГРОКЕ (PREFAB/ОБЪЕКТ)
+   Добавить компоненты:
+   - NetworkIdentity (должен быть)
+   - CombatBase
+   - HealthSystem (уже есть) - теперь реализует IDamageable
+   
+   В CombatBase:
+   - currentAttack = ссылка на AttackData
+   - attackOrigin = точка атаки (рука/кость) либо сам объект
+   - hitLayers = слои целей
+   
+   В HealthSystem:
+   - HitBoxs можно оставить (для совместимости)
+   - Теперь работает и через DealDamage из CombatBase
+
+4. ПЕРЕКЛЮЧИТЬ ВВОД АТАКИ
+   В AttackManager либо:
+   А) Убрать старую логику и вызывать GetComponent<CombatBase>().RequestAttack()
+   Б) Оставить AttackManager только для анимации, а атаку вести через CombatBase
+   
+   ВАЖНО: УБРАТЬ проверку Input во всех кроме isLocalPlayer. В новом подходе - только isLocalPlayer через CombatBase.
+
+5. НА NPC
+   Добавить:
+   - NetworkIdentity (если будут получать урон от разных клиентов)
+   - NPCHealth (реализует IDamageable)
+   - CombatBase (для атаки NPC)
+   - Collider с правильным слоем
+   
+   NPC может вызывать CmdAttack через свой AI
+
+6. ТЕСТИРОВАНИЕ
+   - Host (Server+Client)
+   - Ударить другого игрока - урон должен считаться на сервере
+   - Проверить что урон не дублируется
+   - Проверить что не-локальный игрок не может атаковать за себя
+
+СОВЕТЫ
+- Сначала протести только Melee
+- HitBox можно не трогать пока работает через OverlapSphere
+- Если хочешь оставить старый AttackCollider - не включай его со всех, лучше вообще не использовать
+- Для лука/посоха потом добавить спавн снаряда через NetworkServer.Spawn

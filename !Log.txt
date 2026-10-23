@@ -21,3 +21,20 @@
 - [qna] Обсуждение: Cinemachine + Mirror - локальный, без рассинхрона
 - [answer] Ответ по Cinemachine+Mirror сохранён в Mirror_Cinemachine_Answer.txt
 - [fix] Перезаписал Mirror_Cinemachine_Answer.txt в корректной кодировке UTF-8
+- [mode] Режим изменён: только советы, без правок файлов. Реализация за пользователем
+- [backup] Сохранены правила и контекст в папку AI_Rules/
+- [combat] Обсуждение боевой системы под Mirror + NPC + лук/посох. Выбран вариант с серверным поиском попаданий
+- [plan] Краткий план CombatPlan.txt сохранён
+- [combat-start] Начинаем реализацию боевой системы по CombatPlan.txt
+- [combat-add] Создан IDamageable.cs
+- [combat-add] Создан AttackData.cs (ScriptableObject)
+- [combat-add] Создан CombatBase.cs (серверный OverlapSphere/Raycast)
+- [combat-add] Создан NPCHealth.cs под NPC
+- [combat-edit] HealthSystem реализует IDamageable
+- [combat-edit] Добавлены IDamageable методы в HealthSystem
+- [combat-note] Добавлена заметка в AttackManager
+- [combat-done] Базовая структура боевой системы создана: IDamageable, AttackData, CombatBase, NPCHealth. HealthSystem реализует IDamageable.
+- [setup] Готов план подключения боевой системы
+- [guide] Создан ConnectCombatGuide.txt - инструкция по подключению
+- [answer] Ответ по Tags vs Layers сохранён в LayersVsTags_Answer.txt
+- [answer] Пояснение про слои в CombatBase/AttackData

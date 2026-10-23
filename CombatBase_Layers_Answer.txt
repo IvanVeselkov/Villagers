@@ -1,0 +1,11 @@
+﻿Почему слои не видны в CombatBase
+В CombatBase нет поля LayerMask. Мы берём его из AttackData: currentAttack.hitLayers
+
+Где настраивать:
+1. Edit > Project Settings > Tags and Layers - создать слои (например Enemy, NPC, Player)
+2. Назначить эти слои коллайдерам объектов, по которым можно бить
+3. Assets > Create > Combat > AttackData - создать ассет
+4. В AttackData выбрать hitLayers (LayerMask) - тут и появятся твои слои
+5. Назначить этот AttackData в CombatBase.currentAttack
+
+Всё. Слои задаются именно в AttackData, а не в CombatBase. Так гибче - можно сделать разный hitLayers под меч, лук, посох.

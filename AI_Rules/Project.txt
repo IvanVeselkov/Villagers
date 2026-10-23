@@ -1,0 +1,28 @@
+# Project: Villagers (Unity)
+
+## Кратко
+Проект с уклоном в RPG. Цель - создать рабочий прототип игры с возможностью управления персонажем, анимациями, камерой и базовыми механиками.
+
+## Текущее состояние
+- В проекте есть InputSystem (InputSystem_Actions)
+- Есть модель персонажа TT_RTS_Characters_customizable
+- Есть префабы (Bob, BobVillager, Player и др.)
+- Есть NPC логика (NPCMovement, NPCFarmer)
+- Есть базовые скрипты (Coding, Time, SecondWeaponShoot)
+- Внедрён Cinemachine 3.1.4 в зависимости
+
+## Что планируем реализовать
+- Контроллер игрока (CharacterController + InputSystem)
+- Анимации персонажа с переключением состояний (idle/walk/run/jump)
+- Камера с переключением 1-го/3-го лица (Cinemachine)
+- Базовая система взаимодействия
+- Расширение под RPG механику
+
+## Текущие наработки
+- Созданы скрипты в Assets/Scripts/Player/: PlayerController.cs, PlayerAnimationController.cs, CameraSwitcher.cs, PlayerCamera.cs
+- Созданы файлы правил/лога: !Rule.txt, !Log.txt, !Project.txt, !Thinks.txt
+
+## Примечания
+- Камеру переключаем по Crouch (как временное решение MVP)
+- Курсор блокируется при управлении
+- Ориентация движения относительно камеры

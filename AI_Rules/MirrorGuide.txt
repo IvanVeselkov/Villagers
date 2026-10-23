@@ -1,0 +1,46 @@
+# Краткая инструкция по Mirror (для Villagers)
+
+## 1. Импорт Mirror
+Mirror добавлен в Packages/manifest.json через git URL:
+https://github.com/MirrorNetworking/Mirror.git?path=/Assets/Mirror
+
+Если Unity ещё не подтянул пакет - открой Window > Package Manager > Check for updates / подожди импорт.
+
+## 2. Настройка NetworkManager
+Создай пустой объект: GameObject > Create Empty -> "NetworkManager"
+Добавь компоненты:
+- NetworkManager (Mirror)
+- KcpTransport / или TelepathyTransport (чаще Telepathy проще для локалки/хоста)
+Рекомендуется Telepathy (установлен вместе с Mirror). Выбери его в поле Transport.
+
+## 3. Настройка префаба игрока
+Нужен префаб с:
+- CharacterController
+- NetworkIdentity (автодобавляется/проверь)
+- MP_PlayerMovement (скрипт выше)
+- MP_ThirdPersonCameraSetup (скрипт выше)
+- Animator при желании + MP_PlayerAnimationController (уже есть) - можно доработать под NetworkBehaviour
+
+Настройка MP_PlayerMovement:
+- cameraTransform можно оставить пустым - скрипт возьмёт Camera.main
+- или назначь PlayerVCam Follow/LookAt через CameraSetup
+
+## 4. Тест локально
+1. Создай сцену (или используй SampleScene)
+2. NetworkManager.RegisterPrefab(твой PlayerPrefab)
+3. Нажми "Host (Server + Client)" для одиночного теста или "Start Host"
+4. Для подключения клиента - "Start Client" (IP localhost)
+
+## 5. Важно (правила)
+- Все сетевые действия только для isLocalPlayer
+- Вращение/движение делаем локально, синхронизацию позиции/ротации можно добавить через [SyncVar]/ClientRpc при надобности
+- Камера и ввод активны только у локального игрока - уже учтено в скриптах
+- Не менять пользовательские скрипты без запроса (правило 11)
+
+## 6. Быстрый чек-лист
+- [ ] NetworkManager в сцене
+- [ ] PlayerPrefab зарегистрирован в NetworkManager
+- [ ] На префабе есть NetworkIdentity
+- [ ] MP_PlayerMovement + MP_ThirdPersonCameraSetup добавлены
+- [ ] CharacterController настроен (radius/height/center)
+- [ ] Cinemachine установлен (уже есть)

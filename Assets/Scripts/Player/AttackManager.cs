@@ -29,3 +29,6 @@ public class AttackManager : NetworkBehaviour
     }
   }
 }
+
+// Замечание: для работы с новым CombatBase лучше использовать CombatBase.RequestAttack()
+// и не включать AttackCollider напрямую со всех клиентов
