@@ -3880,7 +3880,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3175892654157377139}
   - component: {fileID: 8557477013617196553}
-  - component: {fileID: 3873443275793050384}
   m_Layer: 0
   m_Name: HPSlider
   m_TagString: Untagged
@@ -3961,20 +3960,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3873443275793050384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2885466154219929104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa16b233f07ba14a8146d0478218337, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damageable: {fileID: 0}
-  Slider: {fileID: 8557477013617196553}
 --- !u!1 &2965635380609299824
 GameObject:
   m_ObjectHideFlags: 0
@@ -4222,7 +4207,7 @@ MonoBehaviour:
   AnimatorChanger: {fileID: 3364030225177677504}
   NetMovement: {fileID: 6904348571462358279}
   HealthSystem: {fileID: 6114306205224849556}
-  AttackManager: {fileID: 0}
+  AttackManager: {fileID: 5319454801390112853}
 --- !u!114 &2686445994590579484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11525,7 +11510,7 @@ MonoBehaviour:
   syncInterval: 0
   NetPlayerInfo: {fileID: 0}
   Attack: 0
-  AttackDuration: 0.5
+  AttackDuration: 0.6
   Dead: 0
 --- !u!114 &1300624133623421162
 MonoBehaviour:
@@ -27278,6 +27263,7 @@ GameObject:
   - component: {fileID: 6904348571462358279}
   - component: {fileID: 6114306205224849556}
   - component: {fileID: 2041633517109404264}
+  - component: {fileID: 5319454801390112853}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -27369,6 +27355,7 @@ MonoBehaviour:
   syncInterval: 0.1
   NetPlayerInfo: {fileID: 0}
   Health: 100
+  hpSlider: {fileID: 8557477013617196553}
   healthText: {fileID: 3114509143231045251}
   HitBoxs:
   - {fileID: 914267629949395119}
@@ -27390,6 +27377,22 @@ MonoBehaviour:
   currentAttack: {fileID: 11400000, guid: 1fe2629a2dca9be4194e3cda55082071, type: 2}
   attackOrigin: {fileID: 954680218486005972}
   serverCooldown: 0.1
+--- !u!114 &5319454801390112853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7817331448634997449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79686412dcb5dce41916e2f8dde7c31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackManager
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  NetPlayerInfo: {fileID: 0}
 --- !u!1 &7843715298410271870
 GameObject:
   m_ObjectHideFlags: 0

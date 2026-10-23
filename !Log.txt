@@ -38,3 +38,10 @@
 - [guide] Создан ConnectCombatGuide.txt - инструкция по подключению
 - [answer] Ответ по Tags vs Layers сохранён в LayersVsTags_Answer.txt
 - [answer] Пояснение про слои в CombatBase/AttackData
+
+[2026-10-23 21:55] Сессия: проверка боевой системы NPC, фиксация ошибок атаки игрока
+- [check] Проанализировал BobVillager.prefab: есть NetworkIdentity, NPCHealth(100/100), CapsuleCollider(layer 7/NPC), NavMeshAgent/NPCMovement/NPCFarmer отключены; AttackOrigin, HitBoxes, UINPC присутствуют. В TestScene 2 инстанса с разными sceneId.
+- [combat] Выявил причины отсутствия урона: в AttackManager поле AttackCollider не назначено -> в Awake() NullReferenceException, CombatBase = null; также AttackCollider.cs удалён. Убрал ссылку/вызов AttackCollider, оставил только CombatBase.RequestAttack().
+- [anim+move] Добавлена блокировка движения во время атаки: правка NetMovement.Update() (isStop -> применяет только гравитацию), метод SetMoveStop(bool).
+- [ui] Обнаружены старые UI-скрипты (HPSliderUpdater под Damageable, InfoCanvas) вызывающие NullReferenceException. HealthSystem имеет healthText (TestHealthText TMP) для isOwned; требуется привязка экранного слайдера к HealthSystem.isOwned.
+- [notes] NoWeaponAttack.hitLayers = 200 (HitBox(3)+Enemy(6)+NPC(7)); CombatBase на PlayerObjects.Player, AttackManager навешен и связан с NetPlayerInformation. NPC заспавниваются в TestScene через NetMan.

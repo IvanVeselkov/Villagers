@@ -2,11 +2,13 @@
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class HealthSystem : NetworkBehaviour, IDamageable
 {
   public NetPlayerInformation NetPlayerInfo;
   public float Health = 100f;
+  public Slider hpSlider;
   public TMP_Text healthText;
 
   public List<HitBox> HitBoxs = new List<HitBox>();
@@ -50,6 +52,7 @@ public class HealthSystem : NetworkBehaviour, IDamageable
     if (isOwned) //РїСЂРѕРІРµСЂСЏРµРј, РµСЃС‚СЊ Р»Рё Сѓ РЅР°СЃ РїСЂР°РІР° РёР·РјРµРЅСЏС‚СЊ СЌС‚РѕС‚ РѕР±СЉРµРєС‚
     {
       healthText.text = Health.ToString();
+      if (hpSlider != null) hpSlider.value = Health;
     }
 
 

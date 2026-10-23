@@ -1,34 +1,50 @@
-using UnityEngine;
 using Mirror;
 using System.Collections;
+using UnityEngine;
 
 public class AttackManager : NetworkBehaviour
 {
   public NetPlayerInformation NetPlayerInfo;
-  public GameObject AttackCollider;
+  private CombatBase CombatBase;
+  private bool isAttacking;
   // Start is called once before the first execution of Update after the MonoBehaviour is created
   void Awake()
   {
-    AttackCollider.SetActive(false);
-
+    CombatBase = GetComponent<CombatBase>();
   }
 
-  IEnumerator Attack()
-  {
-    AttackCollider.SetActive(true);
-    NetPlayerInfo.AnimatorChanger.DoAttack();
-    yield return new WaitForSeconds(NetPlayerInfo.AnimatorChanger.AttackDuration);
-    AttackCollider.SetActive(false);
-  }
   // Update is called once per frame
   void Update()
   {
-    if (Input.GetMouseButtonDown(0)&&AttackCollider.activeSelf==false)
+    if (!isLocalPlayer) return;
+    if (isAttacking) return;
+    if (Input.GetMouseButtonDown(0))
     {
-      StartCoroutine(Attack());
+      StartCoroutine(AttackRoutine());
     }
+  }
+
+  IEnumerator AttackRoutine()
+  {
+    isAttacking = true;
+
+    // Блокируем движение
+    NetPlayerInfo.NetMovement?.SetMoveStop(true);
+
+    // Проигрываем анимацию удара
+    NetPlayerInfo.AnimatorChanger?.DoAttack();
+
+    // Отправляем атаку на сервер
+    CombatBase.RequestAttack();
+
+    // Ждём окончания анимации удара
+    float duration = NetPlayerInfo.AnimatorChanger.AttackDuration;
+    if (duration <= 0) duration = 0.5f; // страховка на случай если не заполнил
+    yield return new WaitForSeconds(duration);
+
+    // Разблокируем
+    NetPlayerInfo.NetMovement?.SetMoveStop(false);
+    isAttacking = false;
   }
 }
 
-// Р—Р°РјРµС‡Р°РЅРёРµ: РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РЅРѕРІС‹Рј CombatBase Р»СѓС‡С€Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ CombatBase.RequestAttack()
-// Рё РЅРµ РІРєР»СЋС‡Р°С‚СЊ AttackCollider РЅР°РїСЂСЏРјСѓСЋ СЃРѕ РІСЃРµС… РєР»РёРµРЅС‚РѕРІ
