@@ -4,6 +4,7 @@ using System.Collections;
 
 public class AnimatorChanger : NetworkBehaviour
 {
+  [SyncVar(hook = nameof(animatorController))]
   private Animator animatorController;
   public NetPlayerInformation NetPlayerInfo;
 
@@ -17,6 +18,7 @@ public class AnimatorChanger : NetworkBehaviour
     animatorController = GetComponent<Animator>();
   }
 
+  [Client]
   public void DoAttack()
   {
     StartCoroutine(IAttack());
@@ -27,10 +29,23 @@ public class AnimatorChanger : NetworkBehaviour
     animatorController.SetTrigger("Damage");
     yield return new WaitForSeconds(0.5f);
   }
+
+  [Client]
+  private void DoDead()
+  {
+    animatorController.SetTrigger("Dead");
+    isDead = true;
+  }
+
+  [Client]
+  private void DoMove(float x,float y)
+  {
+    animatorController.SetFloat("speed", Mathf.Abs(x) + Mathf.Abs(y), 0.1f, Time.deltaTime);
+  }
   // Update is called once per frame
   void Update()
   {
-    if (isOwned)
+    if (isLocalPlayer)
     {
       if (!Dead)
       {
@@ -39,19 +54,14 @@ public class AnimatorChanger : NetworkBehaviour
           float x = Input.GetAxis("Horizontal");
           float y = Input.GetAxis("Vertical");
 
-          animatorController.SetFloat("speed", Mathf.Abs(x) + Mathf.Abs(y), 0.1f, Time.deltaTime);
-        }
-        else
-        {
-          animatorController.SetTrigger("Damage");
+          DoMove(x, y);
         }
       }
       else
       {
         if (!isDead)
         {
-          animatorController.SetTrigger("Dead");
-          isDead = true;
+          DoDead();
         }
       }
     }

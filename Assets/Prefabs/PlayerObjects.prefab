@@ -28172,9 +28172,9 @@ GameObject:
   - component: {fileID: 3734379573665106648}
   - component: {fileID: 914267629949395119}
   - component: {fileID: 6505704333969231358}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ' HitBox'
-  m_TagString: Damageable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28284,7 +28284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d87e51e883b4d4b44b29d163aaef4b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitBox
-  TakenDamege: 0
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  TakenDamage: 0
 --- !u!54 &6505704333969231358
 Rigidbody:
   m_ObjectHideFlags: 0

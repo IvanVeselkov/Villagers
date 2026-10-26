@@ -64,10 +64,10 @@ public class HealthSystem : NetworkBehaviour, IDamageable
     {
       for (int i = 0; i < HitBoxs.Count; i++)
       {
-        if (HitBoxs[i].TakenDamege != 0)
+        if (HitBoxs[i].TakenDamage != 0)
         {
-          TakeDamage(HitBoxs[i].TakenDamege);
-          HitBoxs[i].TakenDamege = 0;
+          TakeDamage(HitBoxs[i].TakenDamage);
+          HitBoxs[i].TakenDamage = 0;
         }
       }
     }
