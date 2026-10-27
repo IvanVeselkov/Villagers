@@ -498,6 +498,10 @@ PrefabInstance:
       propertyPath: tavernPosition
       value: 
       objectReference: {fileID: 155907287}
+    - target: {fileID: 1720719030291036510, guid: 77523984382fb454490c98aef663dd6b, type: 3}
+      propertyPath: sceneId
+      value: 736294226
+      objectReference: {fileID: 0}
     - target: {fileID: 1952640731593038916, guid: 77523984382fb454490c98aef663dd6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.18

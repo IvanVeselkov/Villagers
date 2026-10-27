@@ -4,7 +4,6 @@ using System.Collections;
 
 public class AnimatorChanger : NetworkBehaviour
 {
-  [SyncVar(hook = nameof(animatorController))]
   private Animator animatorController;
   public NetPlayerInformation NetPlayerInfo;
 
