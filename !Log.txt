@@ -45,3 +45,6 @@
 - [anim+move] Добавлена блокировка движения во время атаки: правка NetMovement.Update() (isStop -> применяет только гравитацию), метод SetMoveStop(bool).
 - [ui] Обнаружены старые UI-скрипты (HPSliderUpdater под Damageable, InfoCanvas) вызывающие NullReferenceException. HealthSystem имеет healthText (TestHealthText TMP) для isOwned; требуется привязка экранного слайдера к HealthSystem.isOwned.
 - [notes] NoWeaponAttack.hitLayers = 200 (HitBox(3)+Enemy(6)+NPC(7)); CombatBase на PlayerObjects.Player, AttackManager навешен и связан с NetPlayerInformation. NPC заспавниваются в TestScene через NetMan.
+[2026-10-28 22:26] Учебный материал: создан Assets/Mirror_Tutorial.md
+- [docs] Самоучитель по Mirror 96.0.1: модель клиент-сервер, жизненный цикл NetworkBehaviour, SyncVar/SyncList/SyncDictionary, Command/ClientRpc/TargetRpc/NetworkMessage, спавн и регистрация префабов, NetworkTransform и варианты движения, NetworkAnimator, рецепты (HP-слайдер, бой, инвентарь, NPC AI, чат, лобби, спавн, UI), безопасность, производительность, отладка, карта проекта и поэтапный план миграции.
+- [reason] Запрос пользователя: методичка с вариантами реализации игровых механик в мультиплеере на Mirror.

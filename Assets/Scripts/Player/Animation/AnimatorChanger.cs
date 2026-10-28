@@ -6,7 +6,6 @@ public class AnimatorChanger : NetworkBehaviour
 {
   private Animator animatorController;
   public NetPlayerInformation NetPlayerInfo;
-
   public bool Attack;
   public float AttackDuration;
   public bool Dead;
